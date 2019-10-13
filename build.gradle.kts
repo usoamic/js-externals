@@ -39,16 +39,13 @@ dependencies {
 
 configure<KotlinFrontendExtension> {
     downloadNodeJsVersion = "latest"
-    bundle("webpack", delegateClosureOf<WebPackExtension> {
-        bundleName = "main"
-    })
-}
 
-configure<NpmExtension> {
-    dependency("toastr", "^2.1.4")
-    dependency("jquery", "^3.2.0-0")
-    dependency("datatables.net-bs4", "^1.10.19")
-    dependency("qrcode", "^1.4.1")
+    npm {
+        dependency("toastr", "^2.1.4")
+        dependency("jquery", "^3.2.0-0")
+        dependency("datatables.net-bs4", "^1.10.19")
+        dependency("qrcode", "^1.4.1")
+    }
 }
 
 tasks {
