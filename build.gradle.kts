@@ -18,7 +18,7 @@ buildscript {
 }
 
 allprojects {
-    group = "io.usoamic.web3kt"
+    group = "io.usoamic"
     version = "1.0.5"
 }
 
