@@ -1,6 +1,7 @@
 package js.externals.toastr
 
 @JsModule("toastr")
+@JsNonModule
 external class toastr {
     companion object {
         fun error(message: String)
