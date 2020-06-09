@@ -1,10 +1,8 @@
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackOutput.Target.COMMONJS
-
 object Version {
-    val toastr = "^2.1.4"
-    val jquery = "^3.2.0-0"
-    val datatablesNetBs4 = "^1.10.19"
-    val qrcode = "^1.4.1"
+    const val toastr = "^2.1.4"
+    const val jquery = "^3.2.0-0"
+    const val datatablesNetBs4 = "^1.10.19"
+    const val qrcode = "^1.4.1"
 }
 
 buildscript {
@@ -42,20 +40,8 @@ dependencies {
 
 dependencies {
     implementation(kotlin("stdlib-js"))
-
     implementation(npm("toastr", Version.toastr))
     implementation(npm("jquery", Version.jquery))
     implementation(npm("datatables.net-bs4", Version.datatablesNetBs4))
     implementation(npm("qrcode", Version.qrcode))
-}
-
-kotlin {
-    target {
-        browser {
-            webpackTask {
-                output.libraryTarget = COMMONJS
-                //output.libraryTarget = "commonjs" // alternative
-            }
-        }
-    }
 }
