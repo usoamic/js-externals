@@ -33,6 +33,11 @@ fun JQuery<HTMLElement>.startLoading() {
     this.prop("disabled", true)
 }
 
+fun JQuery<HTMLElement>.changeLoadingText(text: String) {
+    this.html("<i class=\"fa fa-spinner fa-spin\"></i> $text...")
+    this.prop("disabled", true)
+}
+
 fun JQuery<HTMLElement>.stopLoading(disable: Boolean = false) {
     val textAny: Any? = this.data("text")
     val text = if(textAny == null) "" else (textAny as String)
