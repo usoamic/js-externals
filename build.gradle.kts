@@ -1,9 +1,12 @@
-import org.jetbrains.kotlin.gradle.frontend.KotlinFrontendExtension
-import org.jetbrains.kotlin.gradle.frontend.npm.NpmExtension
-import org.jetbrains.kotlin.gradle.frontend.webpack.WebPackExtension
+object Version {
+    const val toastr = "^2.1.4"
+    const val jquery = "^3.2.0-0"
+    const val datatablesNetBs4 = "^1.10.19"
+    const val qrcode = "^1.4.1"
+}
 
 buildscript {
-    val kotlinVersion = "1.3.50"
+    val kotlinVersion = "1.3.72"
 
     repositories {
         jcenter()
@@ -13,19 +16,17 @@ buildscript {
 
     dependencies {
         classpath("org.jetbrains.kotlin", "kotlin-gradle-plugin", kotlinVersion)
-        classpath("org.jetbrains.kotlin", "kotlin-frontend-plugin", "0.0.45")
     }
 }
 
 allprojects {
     group = "io.usoamic"
-    version = "1.0.0"
+    version = "1.0.1"
 }
 
 plugins {
-    id("kotlin2js") version "1.3.50"
-    id("kotlin-dce-js") version "1.3.50"
-    id("org.jetbrains.kotlin.frontend") version "1.3.50"
+    val kotlinVersion = "1.3.72"
+    id("org.jetbrains.kotlin.js") version kotlinVersion
 }
 
 repositories {
@@ -37,25 +38,10 @@ dependencies {
     compile(kotlin("stdlib-js"))
 }
 
-configure<KotlinFrontendExtension> {
-    downloadNodeJsVersion = "latest"
-
-    npm {
-        dependency("toastr", "^2.1.4")
-        dependency("jquery", "^3.2.0-0")
-        dependency("datatables.net-bs4", "^1.10.19")
-        dependency("qrcode", "^1.4.1")
-    }
-}
-
-tasks {
-    compileKotlin2Js {
-        kotlinOptions {
-            metaInfo = true
-            sourceMap = false
-            moduleKind = "commonjs"
-            main = "call"
-            suppressWarnings = false
-        }
-    }
+dependencies {
+    implementation(kotlin("stdlib-js"))
+    implementation(npm("toastr", Version.toastr))
+    implementation(npm("jquery", Version.jquery))
+    implementation(npm("datatables.net-bs4", Version.datatablesNetBs4))
+    implementation(npm("qrcode", Version.qrcode))
 }
